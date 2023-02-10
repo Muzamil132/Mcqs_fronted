@@ -14,9 +14,14 @@ export const DrawerState = createSlice({
   name:"drawer",
   initialState,
   reducers:{
-    toggleDrawer:(state,action)=>{
-      console.log(action)
-        state.open=true
+    toggleDrawer:(state)=>{
+     if(state.open){
+      state.open=false
+     }else{
+      state.open=true
+     }
+
+       
     },
    
     

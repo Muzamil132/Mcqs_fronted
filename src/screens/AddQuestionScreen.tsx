@@ -110,19 +110,19 @@ const LoginScreen = () => {
       sx={{
         display: "flex",
         justifyContent: "center",
-        
+        width:"100%",
         py: 7,
       }}
     >
    
-      <Box  width={{ lg: "450px", xs: "300px", }}>
-        <Paper variant="outlined" sx={{borderRadius:"10px"}}>
-          <Box  sx={{
+      <Box  sx={{
             py:7,
             px:5
-          }}  >
+          }}  width={{ lg: "450px", xs: "300px", }}>
+       
+        
         <Box
-
+   
         sx={{paddingBottom:2}}
          
         >
@@ -281,9 +281,10 @@ const LoginScreen = () => {
           </Button>
          
         </form>
+      
         </Box>
-        </Paper>
-      </Box>
+        
+    
     </Box>
     
   );

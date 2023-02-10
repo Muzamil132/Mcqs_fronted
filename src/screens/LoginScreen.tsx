@@ -63,19 +63,20 @@ const LoginScreen = () => {
         py: 7,
       }}
     >
-      <Box  width={{ lg: "450px", xs: "300px", }}>
-        <Paper variant="outlined" sx={{borderRadius:"10px"}}>
+       <Paper variant="outlined" sx={{borderRadius:"10px"}}>
+      <Box  sx={{px:5}}  width={{ lg: "380px", xs: "300px" }}>
+       
           <Box  sx={{
             py:7,
-            px:5
+            
           }}  >
         <Box
 
         sx={{paddingBottom:4}}
          
         >
-          <Typography component="h4" variant="h4">
-            LOGIN
+          <Typography component="h5" variant="h5">
+            Sign in with your email
           </Typography>
         </Box>
 
@@ -84,7 +85,7 @@ const LoginScreen = () => {
             sx={{
               marginBottom: "10px",
             }}
-            size="small"
+            
             fullWidth
             id="email"
             name="email"
@@ -100,7 +101,6 @@ const LoginScreen = () => {
               marginBottom: "10px",
             }}
 
-            size="small"
             fullWidth
             id="password"
             name="password"
@@ -116,6 +116,7 @@ const LoginScreen = () => {
             disableElevation
             sx={{
               fontWeight: "bold",
+              p:"15px 0px"
             }}
             size="large"
             color="primary"
@@ -157,8 +158,9 @@ const LoginScreen = () => {
           </Box>
         </form>
         </Box>
-        </Paper>
+       
       </Box>
+      </Paper>
     </Box>
   );
 };

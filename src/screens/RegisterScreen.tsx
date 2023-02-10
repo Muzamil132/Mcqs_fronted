@@ -83,7 +83,7 @@ const RegisterScreen= () => {
         display:"flex",
         justifyContent:"center",
         alignItems:"center",
-        py:10
+        py:5
         
        
     }} >
@@ -98,16 +98,16 @@ const RegisterScreen= () => {
     <Box sx={{
         pt:4
     }}>
-        <Typography component="h4" variant="h4" >
-         REGISTER
-        </Typography>
+       
     </Box>
         <Box sx={{
-            py:7,
+            py:3,
             px:5
-        }} width={{lg:"450px",xs:"300px"}}>
+        }} width={{lg:"380px",xs:"300px"}}>
        
-
+       <Typography  sx={{marginBottom:4}} component="h5" variant="h5" >
+         Sign up with your email
+        </Typography>
           
         <form onSubmit={formik.handleSubmit}>
         <TextField
@@ -169,6 +169,7 @@ const RegisterScreen= () => {
           helperText={formik.touched.confirm_password && formik.errors.confirm_password}
         />
         <Button size="large"  disableElevation sx={{
+            p:"15px 0px",
             fontWeight:"bold"
         }} color="primary" variant="contained" fullWidth type="submit">
           RGISTER

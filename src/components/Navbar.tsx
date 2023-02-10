@@ -17,11 +17,11 @@ export default function NavBar() {
     const {user,status,error}= useAppSelector((state)=>state.registerUser)
     const {open}= useAppSelector((state)=>state.drawerState)
   
-    console.log(open)
+   
    const dispatch = useAppDispatch()
 
    function openDrawer(){
-    dispatch(toggleDrawer(open))
+    dispatch(toggleDrawer())
    }
 
 
