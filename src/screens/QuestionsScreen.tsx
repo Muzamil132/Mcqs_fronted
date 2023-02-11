@@ -67,17 +67,24 @@ const QuestionsScreen = () => {
            
             </div>
           :<div>
-               <Box sx={{p:1}}>
+               <Box sx={{p:3}}>
                {
                  questionList.map((quest:QuestType,index)=>(
                   <div>
                     <Paper variant="outlined" sx={{
                       padding:"10px",
                       marginTop:"5px",
-                      borderRadius:"10px"
+                      borderRadius:"10px",
+                      display:"flex"
+
                     }} >
-                    
-                  <Typography sx={{fontSize:"14px",fontWeight:"600"}}  key={index}>{quest.question}</Typography>
+                     <Typography fontWeight="600" sx={{marginRight:"5px"}}   variant="subtitle1" >
+                        {(page-1)*10 +index+1}
+                      </Typography> 
+                    <div>
+
+                   
+                  <Typography sx={{fontSize:"16px",fontWeight:"600"}} variant="body1"  key={index}>{quest.question}</Typography>
 
                    { 
                     quest.options.map((option,i)=>(
@@ -85,7 +92,7 @@ const QuestionsScreen = () => {
                        {
                          !option.optionSelected? <PanoramaFishEyeIcon  sx={{fontSize:"16px"}}  />:<LensIcon sx={{fontSize:"16px"}}/>
                        } 
-                      <Typography   key={i}  sx={{cursor:"pointer",color:Colors.lightText,fontSize:"14px",marginLeft:"5px"}} >
+                      <Typography   key={i}  sx={{cursor:"pointer",color:Colors.lightText,fontSize:"16px",marginLeft:"5px",fontWeight:"600"}} >
                         {option.optionvalue}
                       
 
@@ -98,6 +105,7 @@ const QuestionsScreen = () => {
                     ))
                      
                    }
+                    </div>
                      </Paper>
                     </div>
                  ))
