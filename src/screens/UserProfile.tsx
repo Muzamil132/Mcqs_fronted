@@ -18,10 +18,12 @@ const UserProfile = () => {
      console.log(questionList,"list of my questions")
     const {userId} = useParams()
    
+ const url =process.env.REACT_APP_BACKEND_URL
+ const localurl='http://localhost:4000'
    const loadMyQuestion =async()=>{
     try{
     dispatch(setLoading())
-    const  response = await axios.get(`http://localhost:4000/questions/me/${userId}`)
+    const  response = await axios.get(`${url}/questions/me/${userId}`)
 
      const data =response.data
      console.log(data)

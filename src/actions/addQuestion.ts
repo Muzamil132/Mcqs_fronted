@@ -30,13 +30,14 @@ export interface AddQuestionStateType{
 
 
  const url =process.env.REACT_APP_BACKEND_URL
-
+ const localurl='http://localhost:4000'
 
 
 export const addQuestion = createAsyncThunk<AddQuestionStateType,any>("questions/add",async (question:any,thunkApi)=>{
     console.log(question)
  try{
-    const response = await axios.post(`http://localhost:4000/questions/add`,question,{
+     
+    const response = await axios.post(`${url}/questions/add`,question,{
         headers:{
 
             "Content-Type": "application/json",

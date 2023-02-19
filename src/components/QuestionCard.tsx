@@ -13,12 +13,15 @@ interface IProps{
 
 }
 
+const url =process.env.REACT_APP_BACKEND_URL
+const localurl='http://localhost:4000'
+
 const QuestionCard=({questionItem,key1,myQuestionComponent}:IProps)=>{
   const dispatch =useAppDispatch()
    const enableQuestion =async(id:string)=>{
     try{
     dispatch(setLoading())
-    const  response = await axios.get(`http://localhost:4000/questions/admin/${id}`)
+    const  response = await axios.get(`${url}/questions/admin/${id}`)
 
      const data =response.data
      if(data.success){
@@ -40,7 +43,7 @@ const QuestionCard=({questionItem,key1,myQuestionComponent}:IProps)=>{
    const deleteQuestion =async(id:string)=>{
     try{
     dispatch(setLoading())
-    const  response = await axios.delete(`http://localhost:4000/questions/admin/${id}`)
+    const  response = await axios.delete(`${url}/questions/admin/${id}`)
 
      const data =response.data
      if(data.success){
