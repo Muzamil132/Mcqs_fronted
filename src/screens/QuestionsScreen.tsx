@@ -55,9 +55,7 @@ const QuestionsScreen = () => {
     <div>
         <Layout>
         
-          {
-             questionList?.length<1 && <Typography sx={{color:Colors.textColor1,m:2}}  variant="h3">Comming soon</Typography>
-          }
+          
          
             {
           status==="loading"?
@@ -75,6 +73,9 @@ const QuestionsScreen = () => {
             </div>
           :<div>
                <Box sx={{p:2}}>
+               {
+             questionList?.length<1 && <Typography sx={{color:Colors.textColor1,m:2}}  variant="h3">Comming soon</Typography>
+          }
                {
                 questionList!==undefined &&
                  questionList.map((quest:QuestType,index)=>(
