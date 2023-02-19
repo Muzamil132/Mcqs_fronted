@@ -28,6 +28,7 @@ function App() {
      <BrowserRouter>
      <Routes>
       <Route   path="/login" element={<LoginScreen/>}/>
+      <Route   path="/" element={<Home/>}/>
       <Route   path="/register" element={<RegisterScreen/>}/>
       <Route   path="/questions/:questionType" element={<QuestionsScreen/>}/>
       <Route   path="/questions/disabledQuestions" element={<AdminRoutes>

@@ -79,8 +79,14 @@ export const loadDisabledQuestion = createAsyncThunk<QuestionListStateType,any>(
     }
 
  }catch(error:any){
-     console.log(error.response.data)
-    return thunkApi.rejectWithValue(error.response.data)
+    console.log(error.message)
+    return {
+        count:0,
+        status:"idle",
+        error:error.message,
+        questionList:[]
+    }
+
    
 
  }

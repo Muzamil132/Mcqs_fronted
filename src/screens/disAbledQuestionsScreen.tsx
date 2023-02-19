@@ -1,19 +1,19 @@
-import { Toolbar, Typography,Hidden } from '@mui/material'
+import {  Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React,{useEffect} from 'react'
 import { loadDisabledQuestion } from '../actions/loadQuestions'
 import McqsLoader from '../components/McqsLoader'
-import NavBar from '../components/Navbar'
+
 import QuestionCard from '../components/QuestionCard'
-import SideBar from '../components/SideBar'
+
 import Layout from '../Layouts/Layout'
-import SideBarLayout from '../Layouts/SideBarLayout'
+
 import { useAppDispatch ,useAppSelector} from '../selector'
 
 const DisAbledQuestionsScreen = () => {
     
   const {questionList,error,status} = useAppSelector(state=>state.disabledQuestion)
-  console.log(questionList)
+  console.log(questionList,"error",error)
   const dispatch = useAppDispatch()
   useEffect(()=>{
    
@@ -26,22 +26,14 @@ const DisAbledQuestionsScreen = () => {
 
 
   return (
-        <div>
-           <NavBar/>
-           <Hidden smDown >
-           <SideBarLayout>
-            ggg
-           </SideBarLayout>
-           </Hidden>
+        
+          <Layout>
            <Box sx={{
-            marginLeft:{
-              lg:"280px",
-               sm:"0"
-            },
+           
             p:2
                
            }} >
-            <Toolbar/>
+         
             <Typography variant="h6">
                Questions Added by Users
             </Typography>
@@ -72,7 +64,8 @@ const DisAbledQuestionsScreen = () => {
 }
             </Box>
            </Box>
-        </div>
+        
+        </Layout>
   )
 }
 

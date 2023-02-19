@@ -9,6 +9,7 @@ import MobNavManu from '../components/MobNavManu'
 import NavBar from '../components/Navbar'
 import SideBar from '../components/SideBar'
 import { useBreakPoint } from '../hooks/useBreakScreen'
+import NoInternetConnection from '../InternetConnectionWrapper'
 import { useAppDispatch } from '../selector'
 
  
@@ -37,7 +38,11 @@ const match =useBreakPoint()
 
         }}>
          <Toolbar/>
+         <NoInternetConnection>
+          
+      
         {children}
+        </NoInternetConnection>
         </div>
        
       </div>

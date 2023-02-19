@@ -1,15 +1,19 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 
 import Layout from '../Layouts/Layout'
 // import { register} from '../Reducers/registerState'
-import { useAppDispatch, useAppSelector } from '../selector'
+
 
 export const Home = () => {
-
+ const navigate= useNavigate()
   // const {profile}= useAppSelector((state)=>state)
-  const dispatch = useAppDispatch()
-  
+
+
+    useEffect(()=>{
+      navigate("/questions/gk")
+
+    },[navigate])
 
 
   return (

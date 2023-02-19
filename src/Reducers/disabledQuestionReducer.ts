@@ -62,6 +62,7 @@ export const disabledQuestionsState = createSlice({
      })
 
      builders.addCase(loadDisabledQuestion.rejected,(state,{payload}:any)=>{
+        console.log(payload,"ok loaded")
         state.status="idle"
         if(payload){
             state.error=payload.error
