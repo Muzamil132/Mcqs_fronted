@@ -1,21 +1,23 @@
 import React, { useEffect } from 'react'
 import Layout from '../Layouts/Layout'
 import { useParams } from 'react-router'
-import Toolbar from '@mui/material/Toolbar'
+
 import { useAppDispatch, useAppSelector } from '../selector'
 import { loadQuestionByCategory } from '../actions/loadQuestions'
 import CloseIcon from '@mui/icons-material/Close';
 import {Colors} from "../Colors"
-import { Checkbox, FormControlLabel, FormGroup, Pagination, TextField } from '@mui/material'
+import {  Pagination, Button} from '@mui/material'
 import Box from '@mui/material/Box/Box'
-import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
+
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import { checkAnswer } from '../Reducers/LoadQuestionReducer'
 import DoneIcon from '@mui/icons-material/Done';
 import { QuestType } from '../actions/addQuestion'
-import LensIcon from '@mui/icons-material/Lens';
+
 import McqsLoader from '../components/McqsLoader'
+import MobNavManu from '../components/MobNavManu'
+import { closeDrawer } from '../Reducers/count'
 const QuestionsScreen = () => {
 
   const {questionType} =useParams()
@@ -29,9 +31,11 @@ const QuestionsScreen = () => {
   useEffect(()=>{
      console.log("welcome")
     dispatch(loadQuestionByCategory({questionType,page}))
- 
+   
 
-
+    return ()=>{
+      dispatch(closeDrawer())
+    }
   },[dispatch,questionType,page])
   console.log(questionList)
 
@@ -48,15 +52,16 @@ const QuestionsScreen = () => {
  }
 
   return (
-    <div style={{backgroundColor:Colors.bgmain}} >
+    <div>
         <Layout>
+        
          {/* <Toolbar/> */}
          
             {
           status==="loading"?
             <div>
             {
- [...Array(10)].map((_,i)=>(
+ [...Array(5)].map((_,i)=>(
 
   <McqsLoader key={i}/>
 
@@ -67,45 +72,83 @@ const QuestionsScreen = () => {
            
             </div>
           :<div>
-               <Box sx={{p:3}}>
+               <Box sx={{p:2}}>
                {
+                questionList!==undefined &&
                  questionList.map((quest:QuestType,index)=>(
                   <div>
-                    <Paper variant="outlined" sx={{
-                      padding:"10px",
-                      marginTop:"5px",
+                    <Paper sx={{
+                      p:2,
+                      marginTop:"10px",
+                     
+                      display:"flex",
+                      flexDirection:"column",
                       borderRadius:"10px",
-                      display:"flex"
+                      alignContent:"start"
 
                     }} >
-                     <Typography fontWeight="600" sx={{marginRight:"5px"}}   variant="subtitle1" >
-                        {(page-1)*10 +index+1}
+                     <Typography className="grad" fontWeight="600" sx={{marginRight:"5px",color:"white",borderRadius:"5px",width:"90px",px:"5px",py:"2px",textAlign:"center",fontSize:"15px",marginBottom:"5px"}}   variant="body1" >
+                       Question-{(page-1)*10 +index+1}
                       </Typography> 
+                     
                     <div>
 
                    
-                  <Typography sx={{fontSize:"16px",fontWeight:"600"}} variant="body1"  key={index}>{quest.question}</Typography>
+                  <Typography sx={{fontSize:"16px",fontWeight:"600",color:Colors.textColor2}} variant="subtitle1"  key={index}>{quest.question}</Typography>
 
                    { 
                     quest.options.map((option,i)=>(
-                      <div onClick={()=>targetAnswer(quest.id,option.optionvalue)} style={{display:"flex",justifyItems:"center",marginTop:"10px",opacity:option.optionSelected?option.correct?1:0.4:1}}  >
-                       {
-                         !option.optionSelected? <PanoramaFishEyeIcon  sx={{fontSize:"16px"}}  />:<LensIcon sx={{fontSize:"16px"}}/>
-                       } 
-                      <Typography   key={i}  sx={{cursor:"pointer",color:Colors.lightText,fontSize:"16px",marginLeft:"5px",fontWeight:"600"}} >
+                      <div key={i} className="option_box" onClick={()=>targetAnswer(quest.id,option.optionvalue)}  >
+                       <div className="option">
+                            {i===0 && <span>A</span>}
+                            {i===1 && <span>B</span>}
+                            {i===2 && <span>C</span>}
+                            {i===3 && <span>D</span>}
+                        </div>
+                       <Box
+                       sx={{
+                        background:"white",
+                        display:"flex",
+                        justifyContent:"space-between",
+                        alignItems:"center",
+                        px:1,
+                        py:0.5,
+                       
+                        marginLeft:"5px",
+                        maxWidth:"280px",
+                        width:"90%",
+                        borderRadius:"10px"
+                       }}
+                       >
+                      <Typography   key={i}  sx={{cursor:"pointer",color:Colors.textColor1,fontSize:"15px",marginLeft:"5px",fontWeight:"500"}} >
                         {option.optionvalue}
                       
 
                       </Typography>
-                      
-                        {  option.optionSelected?option.correct? <DoneIcon sx={{color:"green",marginLeft:"10px",fontSize:"20px"}}  /> :<CloseIcon sx={{color:"red",marginLeft:"10px",fontSize:"20px"}} />:""}
+                      {  option.optionSelected?option.correct? <DoneIcon sx={{color:"green",marginLeft:"10px",fontSize:"20px"}}  /> :<CloseIcon sx={{color:"red",marginLeft:"10px",fontSize:"20px"}} />:""}
+                      </Box>
+                        
+                       
                       
                       </div>
-
+                    
                     ))
                      
                    }
-                    </div>
+                       
+                      <Button  sx={{
+                        borderRadius:"10px",
+                        marginTop:"10px",
+                        
+                        background:Colors.purple,
+                        color:"white","&:hover":{
+                          background:Colors.purple,
+                          color:"white"
+                        }
+                      }}>
+                        SAVE
+                       </Button>
+                      </div>
                      </Paper>
                     </div>
                  ))

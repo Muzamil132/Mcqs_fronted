@@ -23,6 +23,12 @@ export const DrawerState = createSlice({
 
        
     },
+    closeDrawer:(state)=>{
+      if(state.open){
+        state.open=false
+      }
+
+    }
    
     
 
@@ -33,7 +39,7 @@ export const DrawerState = createSlice({
 
 export default DrawerState.reducer
 
-export const {toggleDrawer} = DrawerState.actions
+export const {toggleDrawer,closeDrawer} = DrawerState.actions
 
 
 

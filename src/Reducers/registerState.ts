@@ -12,10 +12,10 @@ export const registerState = createSlice({
    
 
     reducers: {
-      logoutUser:()=>{
+      logoutUser:(state)=>{
         localStorage.removeItem("user")
-        return initialState
-
+        
+            state.user=null
       },
      
       

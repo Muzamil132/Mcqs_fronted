@@ -3,8 +3,9 @@ import Hidden from '@mui/material/Hidden'
 import Toolbar from '@mui/material/Toolbar'
 import useMediaQuery from '@mui/material/useMediaQuery/useMediaQuery'
 import React ,{useEffect}from 'react'
-import { getUserProfile } from '../actions/user'
+
 import MobDrawer from '../components/MobDrawer'
+import MobNavManu from '../components/MobNavManu'
 import NavBar from '../components/Navbar'
 import SideBar from '../components/SideBar'
 import { useBreakPoint } from '../hooks/useBreakScreen'
@@ -27,6 +28,7 @@ const match =useBreakPoint()
          <NavBar/>
           <Hidden smDown >
           <SideBar/>
+        
          
           </Hidden>
           <MobDrawer/>

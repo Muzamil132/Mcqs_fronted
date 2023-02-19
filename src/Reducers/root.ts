@@ -1,6 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit'
+import DisAbledQuestionsScreen from '../screens/disAbledQuestionsScreen'
 import DrawerState  from './count'
+import disabledQuestionReducer from './disabledQuestionReducer'
 import LoadQuestionReducer from './LoadQuestionReducer'
+import MyQuestionReducer from './MyQuestionReducer'
 import QuestionReducer from './QuestionReducer'
 
 // import countReducer from './count'
@@ -13,7 +16,9 @@ export const rootReducer = combineReducers({
   registerUser:registerState,
   drawerState:DrawerState,
   addquest:QuestionReducer,
-  questionByCategory:LoadQuestionReducer
+  questionByCategory:LoadQuestionReducer,
+  disabledQuestion:disabledQuestionReducer,
+  myQuestion:MyQuestionReducer
 })
 
 

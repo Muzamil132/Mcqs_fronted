@@ -15,7 +15,7 @@ const LoginScreen = () => {
    useEffect(()=>{
     console.log(state)
       if(state.user){
-          navigate("/")
+          navigate("/questions/gk")
        
   
       }
@@ -124,7 +124,7 @@ const LoginScreen = () => {
             fullWidth
             type="submit"
           >
-            Submit
+            {state.status==="loading"?"Loading ...":"SIGN IN"}
           </Button>
           <Box
             sx={{
@@ -133,7 +133,7 @@ const LoginScreen = () => {
             }}
           >
             <Typography
-             color="primary.main"
+            
               sx={{  textAlign: "start" }}
               variant="body1"
             >
@@ -141,14 +141,14 @@ const LoginScreen = () => {
             </Typography>
             <Link
               style={{
-                color: "blue",
+                color: "#8b5cf6",
                 textDecoration: "none",
                 marginLeft: "5px",
               }}
               to="/register"
             >
               <Typography
-                color="primary.main"
+              
                 sx={{ fontWeight: "bold", textAlign: "start" }}
                 variant="body1"
               >

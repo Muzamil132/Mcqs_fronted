@@ -11,8 +11,12 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-import { useAppDispatch } from '../selector';
-import { logoutUser } from '../Reducers/loadUser';
+import { useAppDispatch, useAppSelector } from '../selector';
+import { logoutUser } from '../Reducers/registerState';
+import { Colors } from '../Colors';
+import { useNavigate } from 'react-router';
+
+
 
 interface IProps{
     name:string
@@ -22,17 +26,34 @@ export default function AccountMenu({name}:IProps) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const dispatch= useAppDispatch()
   const open = Boolean(anchorEl);
+  const navigate = useNavigate()
+  const {user} = useAppSelector(state=>state.registerUser)
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
+    
   };
  const   logoutCurrentUser=()=>{
+   
     dispatch(logoutUser())
     handleClose()
 
  }
+
+ const navigateToAdmin=()=>{
+  navigate("/questions/disabledQuestions")
+  handleClose()
+ }
+
+ const navigateToProfile=()=>{
+  navigate(`/profile/${user?.id}`)
+  handleClose()
+ }
+
+
+
 
   return (
     <React.Fragment>
@@ -86,24 +107,33 @@ export default function AccountMenu({name}:IProps) {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={handleClose}>
-           {name}
-        </MenuItem>
-        
+         
         <Divider />
-        <MenuItem onClick={handleClose}>
+        {
+          user?.isAdmin? <MenuItem sx={{m:1,borderRadius:"5px"}} onClick={navigateToAdmin}>
           <ListItemIcon>
-            <PersonAdd fontSize="small" />
+            <PersonAdd sx={{"&:hover":{
+              color:"white"
+            }}} fontSize="small" />
           </ListItemIcon>
-          Add another account
+          Admin
+        </MenuItem>:<MenuItem sx={{m:1,borderRadius:"5px"}} onClick={navigateToProfile}>
+          <ListItemIcon>
+            <PersonAdd sx={{"&:hover":{
+              color:"white"
+            }}} fontSize="small" />
+          </ListItemIcon>
+          Profile
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        }
+        
+        <MenuItem sx={{m:1,borderRadius:"5px"}} onClick={handleClose}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem onClick={logoutCurrentUser}>
+        <MenuItem sx={{m:1,borderRadius:"5px"}} onClick={logoutCurrentUser}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

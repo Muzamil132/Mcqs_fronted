@@ -3,12 +3,14 @@ import { initialState, UserState } from "../Reducers/user";
 import { User } from "../Reducers/user";
 import axios from "axios";
 
+const url =process.env.REACT_APP_BACKEND_URL
+const localurl='http://localhost:4000'
 export const loadUser = createAsyncThunk<UserState,any>("users/fetch", async (data:any,thunkApi)=> {
  
    
   try {
     const response = await axios.post(
-      `http://localhost:4000/user/login`,
+      `${url}/user/login`,
       data,
       {
         headers: {
@@ -42,7 +44,7 @@ export const registerUser = createAsyncThunk<UserState,any>("users/register", as
 
   try {
     const response = await axios.post(
-      `http://localhost:4000/user/register`,data
+      `${url}/user/register`,data
 
       ,
       {
@@ -52,43 +54,6 @@ export const registerUser = createAsyncThunk<UserState,any>("users/register", as
       }
     );
     localStorage.setItem("user",JSON.stringify(response.data))
-   console.log(response.data)
-    return {
-      user:response.data,
-      error:null,
-      status:"idle"
-    }
-  } catch (err: any) {
-    console.log(err.response.data);
-    return   {
-      user:null,
-      error: err.response.data,
-      status:"idle"
-    }
-   
-  }
-
- 
-});
-
-
-export const getUserProfile = createAsyncThunk<UserState>("users/getUserProfile", async () => {
-  console.log(initialState.user?.token,"FROM")
-
-  try {
-    const response = await axios.get(
-      `http://localhost:4000/user/loaduser`
-
-      ,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${initialState.user?.token}`,
-
-        },
-      }
-    );
- 
    console.log(response.data)
     return {
       user:response.data,

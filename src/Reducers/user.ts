@@ -5,7 +5,8 @@ export interface User{
     name:string,
     email:string,
     id:string,
-    token:string
+    token:string,
+    isAdmin:boolean,
 
 }
 interface Error {

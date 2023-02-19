@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
-import { getUserProfile } from '../actions/user'
+import { Link } from 'react-router-dom'
+
 import Layout from '../Layouts/Layout'
 // import { register} from '../Reducers/registerState'
 import { useAppDispatch, useAppSelector } from '../selector'
@@ -14,12 +15,9 @@ export const Home = () => {
   return (
     <div>
         <Layout>
-            { 
-            [...Array(50)].map((item)=>(
-                <h1>Muzamil</h1>
-
-            ))
-            }
+          <Link to="/questions/add">
+            Add Question
+          </Link>
            
         </Layout>
     </div>

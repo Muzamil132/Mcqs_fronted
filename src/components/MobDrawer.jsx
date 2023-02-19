@@ -7,6 +7,8 @@ import { useAppDispatch, useAppSelector } from '../selector';
 import { IconButton } from '@mui/material';
 import SIdeItems from './SIdeItems';
 import { toggleDrawer } from '../Reducers/count';
+import { Link } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
 const MobDrawer = () => {
 
   const {open} = useAppSelector(state=>state.drawerState)
@@ -32,7 +34,19 @@ const MobDrawer = () => {
                        <CloseIcon/>
                        </IconButton>
               </Box>
-             
+              <Link to="/" style={{textDecoration:"none"}}  >
+              <Typography sx={{
+                px:2,
+                color:"white",
+                backgroundColor:"#374151",
+                py:"3px",
+                borderRadius:"5px"
+                
+
+              }} variant="h6">
+                       Examica
+              </Typography>
+              </Link>
             <SIdeItems/>
             </Box>
 

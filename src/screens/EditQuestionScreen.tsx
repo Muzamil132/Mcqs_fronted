@@ -1,6 +1,6 @@
 import React ,{useEffect} from "react";
-import { Container, Box, } from "@mui/system";
-import { Button, MenuItem, Paper, TextField, Typography,Snackbar } from "@mui/material";
+import { Box, } from "@mui/system";
+import { Button, MenuItem,  TextField, Typography,Snackbar } from "@mui/material";
 import * as yup from "yup";
 import { useFormik } from "formik";
 
@@ -8,17 +8,23 @@ import { useAppDispatch, useAppSelector } from "../selector";
 
 import { sideItemList } from "../components/SIdeItems";
 import { addQuestion } from "../actions/addQuestion";
-import CustomSnackBar from "../components/CustomSnackBar";
-import { useNavigate } from "react-router";
+
+import { useNavigate, useParams } from "react-router";
 import { reset } from "../Reducers/QuestionReducer";
+import axios from "axios";
 
-const LoginScreen = () => {
-  const [category,setCategory]=React.useState('')
+const EditQuestionScreen = () => {
+
   const navigate =useNavigate()
-
+  const {id}= useParams()
+  console.log(id)
   const {success,error} = useAppSelector(state=>state.addquest)
-  const {user} = useAppSelector(state=>state.registerUser)
-  console.log(user)
+ 
+  const url =process.env.REACT_APP_BACKEND_URL
+  const localurl='http://localhost:4000'
+  const {questionList} =useAppSelector(state=>state.myQuestion)
+  const EditQuestion = questionList.find((item)=>item.id===id)
+  console.log(EditQuestion)
   const dispatch = useAppDispatch()
   const [open, setOpen] = React.useState(false);
   const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
@@ -61,34 +67,54 @@ const LoginScreen = () => {
 
   const formik = useFormik({
     initialValues: {
-      question: "",
-      option_1: "",
-      option_2:"",
-      option_3:"",
-      option_4:"",
-      answer:"",
+      question: EditQuestion?.question,
+      option_1: EditQuestion?.options[0].optionvalue,
+      option_2:EditQuestion?.options[1].optionvalue,
+      option_3:EditQuestion?.options[2].optionvalue,
+
+      option_4:EditQuestion?.options[3].optionvalue,
+      answer:EditQuestion?.answer,
     },
    
 
     validationSchema: validationSchema,
-    onSubmit: (values,{resetForm}) => {
+    onSubmit:async (values,{resetForm}) => {
       
       const questionData ={
-        category,
+      
         question:values.question,
         options:[values.option_1,values.option_2,values.option_3,values.option_4],
         answer:values.answer,
-        isAdmin:user?.isAdmin?true:false,
-        userId:user?.id
-  
-      }
-
-      if(category){
-       dispatch(addQuestion(questionData))
-      //  resetForm()
        
-
       }
+
+      if(questionData){
+
+        try
+         {
+            const response = await axios.post(`${url}/questions/edit/${EditQuestion?.id}`,questionData,{
+        headers:{
+
+            "Content-Type": "application/json",
+        }
+    })
+       
+    if(response.data.success){
+        navigate(`/questions/edit/${EditQuestion?.question}`)
+    }
+
+
+
+
+        }catch(error:any){
+           console.log(error.toString());
+           
+
+        }
+      }
+
+
+     
 
       
       
@@ -135,33 +161,12 @@ const LoginScreen = () => {
     autoHideDuration={6000}
     onClose={handleClose}
     message="Question Successfully added"
-    // action={action}
+   
   />
-           <Typography fontSize="18px" component="h5" variant="h5">
-            SELECT CATEGORY
-          </Typography>
-          <TextField
-           sx={{
-            margin: "10px 0",
-          }}
-            size="small"
-          id="outlined-select-currency"
-          fullWidth
-          value={category}
-          onChange={(e)=>setCategory(e.target.value)}
-          select
-          label="Select"
-          defaultValue="GK"
-         
-        >
-          {sideItemList.map((option,index) => (
-            <MenuItem key={index} value={option.title}>
-              {option.title}
-            </MenuItem>
-          ))}
-        </TextField>
-          <Typography fontSize="18px" component="h5" variant="h5">
-            CREATE QUESTION
+          
+       
+          <Typography fontSize="18px" component="h6" variant="h6">
+            EDIT QUESTION
           </Typography>
         </Box>
 
@@ -271,7 +276,7 @@ const LoginScreen = () => {
 
           <Button
             disableElevation
-            disabled={category.trim()===""}
+            
             sx={{
               fontWeight: "bold",
             }}
@@ -294,4 +299,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default EditQuestionScreen;

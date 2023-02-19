@@ -1,27 +1,19 @@
-import { Drawer, Toolbar } from '@mui/material'
+import { Drawer, Toolbar, Typography } from '@mui/material'
+import { Box } from '@mui/system'
 import React from 'react'
+import { Colors } from '../Colors'
 import SIdeItems from './SIdeItems'
-
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import IconButton from '@mui/material/IconButton'
+import { Link } from 'react-router-dom'
+import SideBarLayout from '../Layouts/SideBarLayout'
 const SideBar = () => {
-    const drawerWidth="280px"
+  
   return (
-    <div>
-        <Drawer  variant="permanent"
-        anchor="left"  sx={{
-            position:"fixed",
-            width: drawerWidth,
-            flexShrink: 0,
-            '& .MuiDrawer-paper': {
-              width: drawerWidth,
-              boxSizing: 'border-box',
-            },
-            zIndex:1
-          }}  >
-            <Toolbar/>
-            <SIdeItems/>
-
-        </Drawer>
-    </div>
+    <SideBarLayout>
+      <SIdeItems/>
+    </SideBarLayout>
+       
   )
 }
 

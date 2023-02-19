@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import { useFormik } from 'formik'
 import { Link } from 'react-router-dom';
 import { loadUser, registerUser } from '../actions/user';
+
 import { useAppDispatch, useAppSelector } from '../selector';
 import { useNavigate } from 'react-router-dom';
 
@@ -62,7 +63,7 @@ const RegisterScreen= () => {
  useEffect(()=>{
   console.log(state)
     if(state.user){
-        navigate("/")
+        navigate("/questions/gk")
      
 
     }
@@ -168,25 +169,26 @@ const RegisterScreen= () => {
           error={formik.touched.confirm_password && Boolean(formik.errors.confirm_password)}
           helperText={formik.touched.confirm_password && formik.errors.confirm_password}
         />
+      
         <Button size="large"  disableElevation sx={{
             p:"15px 0px",
             fontWeight:"bold"
         }} color="primary" variant="contained" fullWidth type="submit">
-          RGISTER
+          {state.status==="loading"?"Loading ...":"SIGN UP"}
         </Button>
         <Box  sx={{
             mt:2,
             display:'flex'
         }}>
-            <Typography color="primary.main"  sx={{textAlign:"start"}} variant="body1" >
+            <Typography  sx={{textAlign:"start"}} variant="body1" >
                  Already have account?
             </Typography>
             <Link  style={{
-                color:"blue",
+                color:"#8b5cf6",
                 textDecoration:"none",
                 marginLeft:"5px"
             }}   to="/login">
-            <Typography color="primary.main" sx={{fontWeight:"bold",textAlign:"start"}} variant="body1" >
+            <Typography sx={{fontWeight:"bold",textAlign:"start"}} variant="body1" >
                 login
             </Typography>
 
