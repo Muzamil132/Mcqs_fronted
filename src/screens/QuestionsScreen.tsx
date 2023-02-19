@@ -16,7 +16,7 @@ import DoneIcon from '@mui/icons-material/Done';
 import { QuestType } from '../actions/addQuestion'
 
 import McqsLoader from '../components/McqsLoader'
-import MobNavManu from '../components/MobNavManu'
+
 import { closeDrawer } from '../Reducers/count'
 const QuestionsScreen = () => {
 
@@ -55,7 +55,9 @@ const QuestionsScreen = () => {
     <div>
         <Layout>
         
-         {/* <Toolbar/> */}
+          {
+             questionList?.length<1 && <Typography sx={{color:Colors.textColor1,m:2}}  variant="h3">Comming soon</Typography>
+          }
          
             {
           status==="loading"?
@@ -94,7 +96,7 @@ const QuestionsScreen = () => {
                     <div>
 
                    
-                  <Typography sx={{fontSize:"16px",fontWeight:"600",color:Colors.textColor2}} variant="subtitle1"  key={index}>{quest.question}</Typography>
+                  <Typography sx={{fontSize:"16px",fontWeight:"600",color:Colors.textColor1}} variant="subtitle1"  key={index}>{quest.question}</Typography>
 
                    { 
                     quest.options.map((option,i)=>(
@@ -158,7 +160,9 @@ const QuestionsScreen = () => {
                </Box>
              
             
-            <Pagination onChange={(e,value)=>setPage(value)} page={page} count={count}/>
+               {
+                 count*10>10 && <Pagination sx={{my:2}} onChange={(e,value)=>setPage(value)} page={page} count={count}/>
+               } 
           </div>
          }
         </Layout>

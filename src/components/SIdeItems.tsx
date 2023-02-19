@@ -2,7 +2,8 @@ import React from "react";
 import { Box,Typography } from "@mui/material";
 import { NavLink,useNavigation,useParams } from "react-router-dom";
 import { Colors } from "../Colors";
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
+import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
 interface SideItem {
   title: string;
   to: string;
@@ -27,7 +28,7 @@ const activeStyles={
 const Styles={
   display:"flex",
   alignItems:"center",
-    fontWeight:"500",color:activeBlack,fontSize:"14px",marginTop:"5px",padding:"5px 25px",borderRadius:"3.5px"    ,'&:hover':{
+    fontWeight:"500",color:Colors.textColor1,fontSize:"14px",marginTop:"5px",padding:"5px 25px",borderRadius:"3.5px"    ,'&:hover':{
         background:"#ebedf0",
         color:activeBlack
     }
@@ -86,10 +87,11 @@ const SIdeItems = () => {
             
       <NavLink style={{textDecoration:"none"}} key={index} to={`/questions/${item.to}`}>
         <Box sx={params.questionType===item.to?activeStyles:Styles}>
-         <ArrowForwardIosIcon sx={{color:params.questionType===item.to?"white":activeBlack,marginRight:"5px",fontSize:"16px"}}   />
+        
         <Typography  fontWeight="600" fontSize="14"  variant="inherit" >
         {item.title.toUpperCase()}
         </Typography>
+        <TurnedInNotIcon sx={{color:params.questionType===item.to?"white":activeBlack,marginLeft:"5px",fontSize:"16px"}}   />
        
         
         </Box>

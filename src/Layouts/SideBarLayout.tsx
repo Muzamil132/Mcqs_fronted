@@ -19,7 +19,7 @@ const SideBarLayout = ({children}:any) => {
             '& .MuiDrawer-paper': {
               width: drawerWidth,
               boxSizing: 'border-box',
-              background:Colors.bggray,
+              
               px:2,
               py:1
              
