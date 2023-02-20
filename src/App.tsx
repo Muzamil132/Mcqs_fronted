@@ -13,6 +13,7 @@ import AddQuestionScreen from './screens/AddQuestionScreen';
 import { RequireAuth } from './components/privateRoute';
 import { AdminRoutes } from './components/AdminRoute';
 import UserProfile from './screens/UserProfile';
+import GeneratePdf from './screens/PdfGenerator';
 import EditQuestionScreen from './screens/EditQuestionScreen';
 
 
@@ -28,6 +29,7 @@ function App() {
      <BrowserRouter>
      <Routes>
       <Route   path="/login" element={<LoginScreen/>}/>
+      <Route   path="/pdf" element={<GeneratePdf/>}/>
       <Route   path="/" element={<Home/>}/>
       <Route   path="/register" element={<RegisterScreen/>}/>
       <Route   path="/questions/:questionType" element={<QuestionsScreen/>}/>
