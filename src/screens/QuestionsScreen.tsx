@@ -26,7 +26,8 @@ const QuestionsScreen = () => {
  
  
   const [page,setPage]=React.useState(1)
-
+   
+ 
   //  console.log(error)
   useEffect(()=>{
      console.log("welcome")
@@ -37,7 +38,7 @@ const QuestionsScreen = () => {
       dispatch(closeDrawer())
     }
   },[dispatch,questionType,page])
-  console.log(questionList)
+
 
   useEffect(()=>{
     if(error){

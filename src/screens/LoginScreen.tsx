@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../selector";
 import {loadUser }from "../actions/user"
+import Layout from "../Layouts/Layout";
 
 const LoginScreen = () => {
   const navigate =useNavigate()
@@ -55,6 +56,7 @@ const LoginScreen = () => {
   });
 
   return (
+    <Layout>
     <Box
       sx={{
         display: "flex",
@@ -162,6 +164,7 @@ const LoginScreen = () => {
       </Box>
       </Paper>
     </Box>
+    </Layout>
   );
 };
 
