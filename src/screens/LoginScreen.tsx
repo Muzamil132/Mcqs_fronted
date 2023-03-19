@@ -16,7 +16,7 @@ const LoginScreen = () => {
    useEffect(()=>{
     console.log(state)
       if(state.user){
-          navigate("/questions/gk")
+          navigate(`/category/all/640cce9b0cc3d769e224f41d`)
        
   
       }
@@ -56,7 +56,7 @@ const LoginScreen = () => {
   });
 
   return (
-    <Layout>
+   
     <Box
       sx={{
         display: "flex",
@@ -164,7 +164,7 @@ const LoginScreen = () => {
       </Box>
       </Paper>
     </Box>
-    </Layout>
+  
   );
 };
 

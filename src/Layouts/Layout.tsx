@@ -5,7 +5,7 @@ import useMediaQuery from '@mui/material/useMediaQuery/useMediaQuery'
 import React ,{useEffect}from 'react'
 
 import MobDrawer from '../components/MobDrawer'
-import MobNavManu from '../components/MobNavManu'
+
 import NavBar from '../components/Navbar'
 import SideBar from '../components/SideBar'
 import { useBreakPoint } from '../hooks/useBreakScreen'

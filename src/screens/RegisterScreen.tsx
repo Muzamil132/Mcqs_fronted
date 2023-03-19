@@ -63,7 +63,7 @@ const RegisterScreen= () => {
  useEffect(()=>{
   console.log(state)
     if(state.user){
-        navigate("/questions/gk")
+        navigate("/category/all/640cce9b0cc3d769e224f41d")
      
 
     }

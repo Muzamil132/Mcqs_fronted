@@ -6,19 +6,22 @@ import { useFormik } from "formik";
 
 import { useAppDispatch, useAppSelector } from "../selector";
 
-import { sideItemList } from "../components/SIdeItems";
+
 import { addQuestion } from "../actions/addQuestion";
 import CustomSnackBar from "../components/CustomSnackBar";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 import { reset } from "../Reducers/QuestionReducer";
 
 const LoginScreen = () => {
-  const [category,setCategory]=React.useState('')
+
   const navigate =useNavigate()
 
   const {success,error} = useAppSelector(state=>state.addquest)
   const {user} = useAppSelector(state=>state.registerUser)
-  console.log(user)
+  
+
+  const  {state:{title,category,subcategory}}= useLocation()
+ 
   const dispatch = useAppDispatch()
   const [open, setOpen] = React.useState(false);
   const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
@@ -75,6 +78,7 @@ const LoginScreen = () => {
       
       const questionData ={
         category,
+        subcategory,
         question:values.question,
         options:[values.option_1,values.option_2,values.option_3,values.option_4],
         answer:values.answer,
@@ -83,16 +87,17 @@ const LoginScreen = () => {
   
       }
 
-      if(category){
+     
        dispatch(addQuestion(questionData))
       //  resetForm()
        
 
-      }
+      
 
       
       
     },
+
   });
   useEffect(()=>{
     
@@ -137,31 +142,10 @@ const LoginScreen = () => {
     message="Question Successfully added"
     // action={action}
   />
-           <Typography fontSize="18px" component="h5" variant="h5">
-            SELECT CATEGORY
-          </Typography>
-          <TextField
-           sx={{
-            margin: "10px 0",
-          }}
-            size="small"
-          id="outlined-select-currency"
-          fullWidth
-          value={category}
-          onChange={(e)=>setCategory(e.target.value)}
-          select
-          label="Select"
-          defaultValue="GK"
+          
          
-        >
-          {sideItemList.map((option,index) => (
-            <MenuItem key={index} value={option.title}>
-              {option.title}
-            </MenuItem>
-          ))}
-        </TextField>
           <Typography fontSize="18px" component="h5" variant="h5">
-            CREATE QUESTION
+            Create question in {title}
           </Typography>
         </Box>
 
@@ -271,7 +255,7 @@ const LoginScreen = () => {
 
           <Button
             disableElevation
-            disabled={category.trim()===""}
+           
             sx={{
               fontWeight: "bold",
             }}

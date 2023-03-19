@@ -41,7 +41,7 @@ export const loadQuestionByCategory = createAsyncThunk<QuestionListStateType,any
     console.log(values)
    
  try{
-    const response = await axios.get(`${url}/questions/all?cate=${values.questionType}&page=${values.page}`)
+    const response = await axios.get(`${url}/questions/all/${values.id}?page=${values.page}`)
 
    
     console.log(response.data.questions,"finest here is it")

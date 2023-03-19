@@ -40,7 +40,7 @@ export default function NavBar() {
            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           
           </Typography>
-          <Link to="/questions/add" style={{
+          <Link to="/add/cate" style={{
             textDecoration:"none"
           }}  >
          
@@ -49,15 +49,7 @@ export default function NavBar() {
           </Button>
           
           </Link>
-          <Link to="/questions/fav" style={{
-            textDecoration:"none"
-          }}  >
          
-          <Button disableElevation sx={{marginRight:"5px",background:"#374151"}} variant="contained" endIcon={<FavoriteIcon />}>
-             Saved
-          </Button>
-          
-          </Link>
           {
             user? <div>
                 <AccountMenu name={user.name}   />

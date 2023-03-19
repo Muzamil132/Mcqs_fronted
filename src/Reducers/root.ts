@@ -1,5 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit'
 import DisAbledQuestionsScreen from '../screens/disAbledQuestionsScreen'
+import { Api } from '../services/api'
 import DrawerState  from './count'
 import disabledQuestionReducer from './disabledQuestionReducer'
 import LoadQuestionReducer from './LoadQuestionReducer'
@@ -18,7 +19,8 @@ export const rootReducer = combineReducers({
   addquest:QuestionReducer,
   questionByCategory:LoadQuestionReducer,
   disabledQuestion:disabledQuestionReducer,
-  myQuestion:MyQuestionReducer
+  myQuestion:MyQuestionReducer,
+  [Api.reducerPath]:Api.reducer,
 })
 
 

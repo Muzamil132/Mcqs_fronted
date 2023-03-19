@@ -15,6 +15,9 @@ import { AdminRoutes } from './components/AdminRoute';
 import UserProfile from './screens/UserProfile';
 import GeneratePdf from './screens/PdfGenerator';
 import EditQuestionScreen from './screens/EditQuestionScreen';
+import SubCategory from './screens/SubCategory';
+import Category from './screens/Caregory';
+import SubCategoryAdd from './screens/SubCategoryAdd';
 
 
 function App() {
@@ -32,7 +35,10 @@ function App() {
       <Route   path="/pdf" element={<GeneratePdf/>}/>
       <Route   path="/" element={<Home/>}/>
       <Route   path="/register" element={<RegisterScreen/>}/>
-      <Route   path="/questions/:questionType" element={<QuestionsScreen/>}/>
+      <Route   path="/category/all/:id" element={<SubCategory/>}/>
+      <Route   path="/add/cate/:id" element={<SubCategoryAdd/>}/>
+      <Route   path="/add/cate" element={<Category/>}/>
+      <Route   path="/questions/:id" element={<QuestionsScreen/>}/>
       <Route   path="/questions/disabledQuestions" element={<AdminRoutes>
         <DisAbledQuestionsScreen/>
       </AdminRoutes>}/>

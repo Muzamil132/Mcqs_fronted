@@ -73,7 +73,7 @@ const QuestionCard=({questionItem,key1,myQuestionComponent}:IProps)=>{
                <Typography className="grad" fontWeight="600" sx={{marginRight:"5px",color:"white",borderRadius:"5px",width:"90px",px:"5px",py:"2px",textAlign:"center",fontSize:"15px",marginBottom:"5px"}}   variant="body1" >
                        Question-{(2-1)*10 +1}
                </Typography> 
-               <Typography sx={{fontSize:"16px",fontWeight:"600",color:Colors.textColor2}} variant="body1"  >{questionItem.question}</Typography>
+               <Typography sx={{fontSize:"16px",fontFamily:"Roboto",color:Colors.textColor2}} variant="body1"  >{questionItem.question}</Typography>
                { 
                     questionItem.options.map((option,i)=>(
                       <div key={i} className="option_box" >

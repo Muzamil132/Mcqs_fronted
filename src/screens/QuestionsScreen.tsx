@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Layout from '../Layouts/Layout'
-import { useParams } from 'react-router'
+import { useLocation, useParams } from 'react-router'
 
 import { useAppDispatch, useAppSelector } from '../selector'
 import { loadQuestionByCategory } from '../actions/loadQuestions'
@@ -20,7 +20,9 @@ import McqsLoader from '../components/McqsLoader'
 import { closeDrawer } from '../Reducers/count'
 const QuestionsScreen = () => {
 
-  const {questionType} =useParams()
+  const {id} =useParams()
+  const state = useLocation()
+  console.log(state)
    const dispatch = useAppDispatch()
   const {status,error,questionList,count} = useAppSelector(state=>state.questionByCategory)
  
@@ -31,13 +33,13 @@ const QuestionsScreen = () => {
   //  console.log(error)
   useEffect(()=>{
      console.log("welcome")
-    dispatch(loadQuestionByCategory({questionType,page}))
+    dispatch(loadQuestionByCategory({id,page}))
    
 
     return ()=>{
       dispatch(closeDrawer())
     }
-  },[dispatch,questionType,page])
+  },[dispatch,id,page])
 
 
   useEffect(()=>{
@@ -74,6 +76,9 @@ const QuestionsScreen = () => {
             </div>
           :<div>
                <Box sx={{p:2}}>
+
+               
+
                {
              questionList?.length<1 && <Typography sx={{color:Colors.textColor1,m:2}}  variant="h3">Comming soon</Typography>
           }
@@ -98,7 +103,7 @@ const QuestionsScreen = () => {
                     <div>
 
                    
-                  <Typography sx={{fontSize:"16px",fontWeight:"600",color:Colors.textColor1}} variant="subtitle1"  key={index}>{quest.question}</Typography>
+                  <Typography sx={{fontSize:"16px",fontWeight:"500",color:Colors.textColor1,fontFamily:"sans-serif"}} variant="subtitle1"  key={index}>{quest.question}</Typography>
 
                    { 
                     quest.options.map((option,i)=>(
@@ -124,7 +129,7 @@ const QuestionsScreen = () => {
                         borderRadius:"10px"
                        }}
                        >
-                      <Typography   key={i}  sx={{cursor:"pointer",color:Colors.textColor1,fontSize:"15px",marginLeft:"5px",fontWeight:"500"}} >
+                      <Typography   key={i}  sx={{cursor:"pointer",fontFamily:"sans-serif",color:Colors.textColor1,fontSize:"15px",marginLeft:"5px",fontWeight:"500"}} >
                         {option.optionvalue}
                       
 
@@ -140,18 +145,7 @@ const QuestionsScreen = () => {
                      
                    }
                        
-                      <Button  sx={{
-                        borderRadius:"10px",
-                        marginTop:"10px",
-                        
-                        background:Colors.purple,
-                        color:"white","&:hover":{
-                          background:Colors.purple,
-                          color:"white"
-                        }
-                      }}>
-                        SAVE
-                       </Button>
+                      
                       </div>
                      </Paper>
                     </div>

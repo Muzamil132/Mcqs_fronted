@@ -9,6 +9,9 @@ import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import { useGetCategoriesQuery } from "../services/api";
+import Skeleton from '@mui/material/Skeleton';
+import { CategoryLoader } from "./CategoryLoader";
 interface SideItem {
   title: string;
   to: string;
@@ -45,51 +48,36 @@ const Styles={
     
 }
 
-export const sideItemList: SideItem[] = [
- 
-  {
-    title: "GK",
-    to: "gk",
-  },
-  {
-    title: "Islamiate",
-    to: "islamiate",
-  },
-  {
-    title: "Pak Study",
-    to: "pak_study",
-  },
-  {
-    title: "Pakistan Current Affairs",
-    to: "pak_current",
-  },
-  {
-    title: "World Current Affairs",
-    to: "word_current",
-  },
-  {
-    title: "Mathematics",
-    to: "maths",
-  },
-  {
-    title: "Physics",
-    to: "physics",
-  },
-  {
-    title: "Everyday Science",
-    to: "science",
-  },
-];
 
-const SIdeItems = () => {
+
+const SIdeItems = ():any => {
   const [open, setOpen] = React.useState(true);
+  const  {data,isSuccess,isFetching,isError,error}= useGetCategoriesQuery("ty")
+ 
+  console.log(data)
 
   const handleClick = () => {
     setOpen(!open);
   };
 
     const params = useParams()
-    console.log(params)
+  
+  if(isFetching){
+    return(
+      
+        [...Array(20)].map((_,index)=>(
+          <Box sx={{marginTop:"5px",p:"5px"}}>
+          <Skeleton   width="100%" height={50} />
+          </Box>
+        ))
+    
+
+    )
+  }
+
+
+
+   
   return (
     <div style={{
        
@@ -98,32 +86,22 @@ const SIdeItems = () => {
         height:"100vh"
     }} >
      {
-        sideItemList.map((item,index)=>(
+      data !==undefined &&
+        data.categories.map((item:any,index:any)=>(
 
-          <NavLink style={{textDecoration:"none"}} to={`/questions/${item.to}`} >
-          <ListItemButton sx={params.questionType===item.to?activeStyles:Styles}  >
+          <NavLink state={{data:{title:item.title}}}  key={index} style={{textDecoration:"none"}} to={`/category/all/${item._id}`} >
+          <ListItemButton sx={params.id===item._id?activeStyles:Styles}  >
          
           <ListItemText  sx={{
             fontSize:"16px",fontWeight:"600"
           }} primary={item.title} />
           <ListItemIcon>
-            <TurnedInNotIcon sx={{color:params.questionType===item.to?"white":activeBlack,marginLeft:"5px",fontSize:"16px"}} />
+            <TurnedInNotIcon sx={{color:params.id===item._id?"white":activeBlack,marginLeft:"5px",fontSize:"16px"}} />
           </ListItemIcon>
         </ListItemButton>
         </NavLink>
             
-      // <NavLink style={{textDecoration:"none"}} key={index} to={`/questions/${item.to}`}>
-      //   <Box sx={params.questionType===item.to?activeStyles:Styles}>
-        
-      //   <Typography  fontWeight="600" fontSize="14"  variant="inherit" >
-      //   {item.title.toUpperCase()}
-      //   </Typography>
-      //   <TurnedInNotIcon sx={{color:params.questionType===item.to?"white":activeBlack,marginLeft:"5px",fontSize:"16px"}}   />
-       
-        
-      //   </Box>
-      // </NavLink>
-
+     
         ))
      }
 

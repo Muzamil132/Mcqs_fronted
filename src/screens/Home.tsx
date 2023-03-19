@@ -2,16 +2,16 @@ import React, { useEffect } from 'react'
 import { Link,useNavigate } from 'react-router-dom'
 
 import Layout from '../Layouts/Layout'
-// import { register} from '../Reducers/registerState'
+
 
 
 export const Home = () => {
  const navigate= useNavigate()
-  // const {profile}= useAppSelector((state)=>state)
+
 
 
     useEffect(()=>{
-      navigate("/questions/gk")
+      navigate("/category/all/640cce9b0cc3d769e224f41d")
 
     },[navigate])
 
