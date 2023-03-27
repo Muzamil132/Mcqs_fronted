@@ -18,9 +18,13 @@ const SubCategory =():any=>{
         <Layout>
             {
                 [...Array(20)].map((_,index)=>(
+                  <Box sx={{width:"100%",mx:2}}>
+
+                 
                     <CategoryLoader key={index}/>
+                    </Box>
                 ))
-            }sssss
+            }
          
         </Layout>
     )
@@ -29,16 +33,16 @@ const SubCategory =():any=>{
 
   if(data!==undefined && data.Subcategories.length<1){
     return(
-        <Layout>
-             <Box sx={{p:1,width:{lg:500,sm:"100%"}}}>
-           
-                    <Typography variant="h4">
-                      We are working on this section
-                    </Typography>
+      <Layout>
+      <Box sx={{width:{lg:500,sm:"100%"}}}>
+    
+             <Typography sx={{px:2,py:2}} variant="h5">
+               We are working on this section
+             </Typography>
 
-              </Box>
+       </Box>
 
-        </Layout>
+      </Layout>
     )
   }
 
@@ -47,11 +51,12 @@ const SubCategory =():any=>{
          data!==undefined && 
 
          <Layout>
-           <Box sx={{p:1,width:"100%"}}>
+          <Box sx={{display:"flex",justifyContent:"center",width:{lg:"400px",sm:"90%"}}}>
+           <Box sx={{width:"100%",px:2}}>
             {
                 data!==undefined && data.Subcategories.map((item:any,index:number)=>(
                     <Link key={index} to={`/questions/${item._id}`}  style={{textDecoration:"none",color:"black"}}>
-                    <Paper elevation={1} sx={{p:1,width:{lg:500,sm:"100%"},marginTop:1,borderLeft:`3px Solid ${Colors.purple} `}}>
+                    <Paper elevation={1} sx={{p:1,marginTop:1,borderLeft:`3px Solid ${Colors.purple} `}}>
                     <Typography variant="subtitle1" >
                       {item.title}
                     </Typography>
@@ -63,6 +68,7 @@ const SubCategory =():any=>{
             }
 
            
+           </Box>
            </Box>
           </Layout>
         

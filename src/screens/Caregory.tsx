@@ -20,7 +20,7 @@ const Category =():any=>{
                 [...Array(20)].map((_,index)=>(
                     <CategoryLoader key={index}/>
                 ))
-            }sssss
+            }
          
         </Layout>
     )
@@ -29,16 +29,16 @@ const Category =():any=>{
 
   if(data!==undefined && data.categories.length<1){
     return(
-        <Layout>
-             <Box sx={{p:1,width:{lg:500,sm:"100%"}}}>
-           
-                    <Typography variant="h4">
-                      We are working on this section
-                    </Typography>
+      <Layout>
+      <Box sx={{width:{lg:500,sm:"100%"}}}>
+    
+             <Typography sx={{px:2,py:2}} variant="h5">
+               We are working on this section
+             </Typography>
 
-              </Box>
+       </Box>
 
-        </Layout>
+ </Layout>
     )
   }
 
@@ -47,16 +47,16 @@ const Category =():any=>{
          data!==undefined && 
 
          <Layout>
-            <Box sx={{py:1,px:1}}>
-            <Typography variant="h5" >
+          
+           <Box sx={{width:{lg:"450px",sm:"90%"}}}>
+            <Box sx={{px:2}}>
+            <Typography sx={{py:1}} variant="h5" >
                       Select category you want to add question
                     </Typography>
-            </Box>
-           <Box sx={{p:1,width:"100%"}}>
             {
                 data!==undefined && data.categories.map((item:any,index:number)=>(
                     <Link key={index} to={`/add/cate/${item._id}`}  style={{textDecoration:"none",color:"black"}}>
-                    <Paper elevation={1} sx={{p:1,width:{lg:500,sm:"100%"},marginTop:1,borderLeft:`3px Solid ${Colors.purple} `}}>
+                    <Paper elevation={1} sx={{p:1,marginTop:1,borderLeft:`3px Solid ${Colors.purple} `}}>
                     <Typography variant="subtitle1" >
                       {item.title}
                     </Typography>
@@ -66,7 +66,7 @@ const Category =():any=>{
 
                 ))
             }
-
+         </Box>
            
            </Box>
           </Layout>

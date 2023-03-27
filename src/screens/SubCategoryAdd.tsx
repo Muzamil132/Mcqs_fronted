@@ -30,9 +30,9 @@ const SubCategoryAdd =():any=>{
   if(data!==undefined && data.Subcategories.length<1){
     return(
         <Layout>
-             <Box sx={{p:1,width:{lg:500,sm:"100%"}}}>
+             <Box sx={{width:{lg:500,sm:"100%"}}}>
            
-                    <Typography variant="h4">
+                    <Typography sx={{px:2,py:2}} variant="h5">
                       We are working on this section
                     </Typography>
 
@@ -47,12 +47,11 @@ const SubCategoryAdd =():any=>{
          data!==undefined && 
 
          <Layout>
-            <Box sx={{py:1,px:1}}>
-            <Typography variant="h5" >
+           
+           <Box sx={{mx:2,width:{lg:"450px",sm:"90%"}}}>
+           <Typography sx={{py:1}}  variant="h5" >
                       Select subcategory you want to add question
-                    </Typography>
-            </Box>
-           <Box sx={{p:1,width:"100%"}}>
+             </Typography>
             {
                 data!==undefined && data.Subcategories.map((item:any,index:number)=>(
                     <Link  state={{category:id,subcategory:item._id,title:item.title}} key={index} to={`/questions/add`}  style={{textDecoration:"none",color:"black"}}>

@@ -2,21 +2,16 @@ import React from "react";
 import { Box,Typography } from "@mui/material";
 import { NavLink,useNavigation,useParams } from "react-router-dom";
 import { Colors } from "../Colors";
-import SendIcon from '@mui/icons-material/Send';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
+
 import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { useGetCategoriesQuery } from "../services/api";
 import Skeleton from '@mui/material/Skeleton';
-import { CategoryLoader } from "./CategoryLoader";
-interface SideItem {
-  title: string;
-  to: string;
-  subSideItem?: SubSideItem[];
-}
+import { useAppDispatch, } from '../selector';
+import { toggleDrawer } from "../Reducers/count";
+
 interface SubSideItem {
   title: string;
   to: string;
@@ -51,14 +46,14 @@ const Styles={
 
 
 const SIdeItems = ():any => {
-  const [open, setOpen] = React.useState(true);
+ 
+
+  const dispatch = useAppDispatch()
   const  {data,isSuccess,isFetching,isError,error}= useGetCategoriesQuery("ty")
  
   console.log(data)
 
-  const handleClick = () => {
-    setOpen(!open);
-  };
+
 
     const params = useParams()
   
@@ -75,6 +70,14 @@ const SIdeItems = ():any => {
     )
   }
 
+  const navigateTo =()=>{
+   
+
+    dispatch(toggleDrawer())
+
+
+  }
+
 
 
    
@@ -89,7 +92,7 @@ const SIdeItems = ():any => {
       data !==undefined &&
         data.categories.map((item:any,index:any)=>(
 
-          <NavLink state={{data:{title:item.title}}}  key={index} style={{textDecoration:"none"}} to={`/category/all/${item._id}`} >
+          <NavLink onClick={()=>navigateTo()} state={{data:{title:item.title}}}  key={index} style={{textDecoration:"none"}} to={`/category/all/${item._id}`} >
           <ListItemButton sx={params.id===item._id?activeStyles:Styles}  >
          
           <ListItemText  sx={{

@@ -5,9 +5,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { addQuestion, AddQuestionStateType } from "../actions/addQuestion";
 
 
-interface drawerStateType {
-  open:boolean
-}
+
 
 const initialState:AddQuestionStateType={
     success:false,

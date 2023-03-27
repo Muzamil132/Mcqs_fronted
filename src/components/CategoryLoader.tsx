@@ -5,11 +5,11 @@ import { Paper } from '@mui/material';
 
 export  function CategoryLoader() {
   return (
-    <Box sx={{maxWidth:"450px",width:"100%",marginTop:"10px" }}>
+    <Box sx={{maxWidth:"450px",width:"95%",marginTop:"5px" }}>
   
      
-     <Box sx={{marginTop:1,display:"flex",alignItems:"center"}} >
-     <Skeleton sx={{marginRight:"10px"}} animation="wave" variant="circular" width={40} height={40} />
+     <Box sx={{display:"flex",alignItems:"center",px:2}} >
+     
      <Skeleton   width="100%" height={60} />
     
      

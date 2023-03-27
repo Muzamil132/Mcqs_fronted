@@ -85,7 +85,7 @@ const QuestionsScreen = () => {
                {
                 questionList!==undefined &&
                  questionList.map((quest:QuestType,index)=>(
-                  <div>
+                  <div key={index} >
                     <Paper sx={{
                       p:2,
                       marginTop:"10px",
