@@ -62,7 +62,7 @@ const QuestionsScreen = () => {
          
             {
           status==="loading"?
-            <div>
+            <div style={{padding:"10px 20px"}}>
             {
  [...Array(5)].map((_,i)=>(
 

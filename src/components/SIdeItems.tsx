@@ -11,6 +11,7 @@ import { useGetCategoriesQuery } from "../services/api";
 import Skeleton from '@mui/material/Skeleton';
 import { useAppDispatch, } from '../selector';
 import { toggleDrawer } from "../Reducers/count";
+import { useBreakPoint } from "../hooks/useBreakScreen";
 
 interface SubSideItem {
   title: string;
@@ -50,7 +51,7 @@ const SIdeItems = ():any => {
 
   const dispatch = useAppDispatch()
   const  {data,isSuccess,isFetching,isError,error}= useGetCategoriesQuery("ty")
- 
+ const match = useBreakPoint()
   console.log(data)
 
 
@@ -72,8 +73,10 @@ const SIdeItems = ():any => {
 
   const navigateTo =()=>{
    
-
+  if(!match){
     dispatch(toggleDrawer())
+  }
+   
 
 
   }
